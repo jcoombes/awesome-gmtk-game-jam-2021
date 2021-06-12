@@ -6,6 +6,7 @@
 [node name="Main" type="Node"]
 
 [node name="Gameover" parent="." instance=ExtResource( 2 )]
+z_index = 3
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 363.076, 296.334 )
