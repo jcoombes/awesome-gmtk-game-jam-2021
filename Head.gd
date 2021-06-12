@@ -4,7 +4,7 @@ signal death
 
 var tail = load("res://Tail.tscn")
 
-var speed = 200
+var speed = 2
 var direction = Vector2(1, 0)
 var tail_spawn_rate = .1
 var the_time = 0
@@ -28,7 +28,7 @@ func _process(delta):
 	pass
 	
 func _physics_process(delta):
-	#print(position)
+	print(position)
 
 	the_time += delta
 	if the_time > tail_spawn_rate:
@@ -38,9 +38,16 @@ func _physics_process(delta):
 		get_parent().add_child(tail_)
 	
 		the_time -= tail_spawn_rate
-		
-	move_and_slide(speed * direction)
 	
+	var collision = move_and_collide(direction * speed)
+	if collision:
+		var reflect = collision.remainder.bounce(collision.normal)
+		direction = direction.bounce(collision.normal)
+		move_and_collide(reflect)
+		
+		
+	# object "collision" contains information about the collision
+
 
 
 func _on_Player_death():
