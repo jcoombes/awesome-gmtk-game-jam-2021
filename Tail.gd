@@ -5,13 +5,13 @@ extends Area2D
 # var b = "text"
 var the_time = 0
 var init_not_deadly = 1
-var seconds_remaining = 10
+var seconds_remaining = 5
 
 signal death
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	seconds_remaining = 10
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
