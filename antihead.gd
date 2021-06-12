@@ -5,8 +5,8 @@ signal death
 var tail = load("res://Tail.tscn")
 
 var speed = 2
-var direction = Vector2(1, 0)
-var tail_spawn_rate = 0.1
+var direction = Vector2(-1, 0)
+var tail_spawn_rate = .1
 var the_time = 0
 
 
@@ -21,7 +21,7 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		self.direction = event.relative.normalized()
+		self.direction = -event.relative.normalized()
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

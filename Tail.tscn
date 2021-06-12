@@ -14,6 +14,7 @@ animations = [ {
 } ]
 
 [node name="Tail" type="Area2D"]
+scale = Vector2( 0.1, 0.1 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
