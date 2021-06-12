@@ -19,6 +19,8 @@ func _input(event):
 		OS.window_fullscreen = !OS.window_fullscreen
 	if event.is_action_pressed("escape!"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if event.is_action_pressed("enscape."):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
