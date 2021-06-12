@@ -3,7 +3,11 @@ extends Area2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var seconds_remaining
+var the_time = 0
+var init_not_deadly = 1
+var seconds_remaining = 10
+
+signal death
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,8 +15,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	the_time += delta
+	
 	# self.position += delta * Vector2(1, 1)
 	seconds_remaining -= delta
 	if seconds_remaining <= 0:
-		print("I am dead now goodbye")
 		get_parent().remove_child(self)
+
+
+func _on_Tail_area_entered(area):
+	if the_time > init_not_deadly:
+		emit_signal("death")
