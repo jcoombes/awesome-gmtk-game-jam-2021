@@ -7,8 +7,8 @@ var antiplayer = load("res://Antiplayer.tscn")
 # var a = 2
 # var b = "text"
 
-var player_spawn = Vector2(768, 300)
-var antiplayer_spawn = Vector2(256, 300)
+var player_spawn = Vector2(960 - 430, 540)
+var antiplayer_spawn = Vector2(960 + 430, 540)
 var players = []
 
 var the_time = 0
