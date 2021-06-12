@@ -14,8 +14,16 @@ var players = []
 var the_time = 0
 var new_snake = 10
 
+func _input(event):
+	if event.is_action_pressed("toggle_fullscreen"):
+		OS.window_fullscreen = !OS.window_fullscreen
+	if event.is_action_pressed("escape!"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 	var player_ = player.instance()
 	player_.position = player_spawn
 	player_.connect("death", $Gameover, "_on_Player_death")
