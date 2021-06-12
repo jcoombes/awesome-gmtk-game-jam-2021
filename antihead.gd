@@ -2,16 +2,16 @@ extends KinematicBody2D
 
 signal death
 
-var tail = load("res://Tail.tscn")
+var tail = load("res://Antitail.tscn")
 
 var speed = 2
 var direction = Vector2(-1, 0)
-var tail_spawn_rate = .1
+var tail_spawn_rate = 0.05
 var the_time = 0
 
 
 func on_death():
-	print("ohno")
+	# print("ohno")
 	emit_signal("death")
 	
 # Called when the node enters the scene tree for the first time.
@@ -28,7 +28,7 @@ func _process(delta):
 	pass
 	
 func _physics_process(delta):
-	print(position)
+	# print(position)
 
 	the_time += delta
 	if the_time > tail_spawn_rate:
