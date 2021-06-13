@@ -2,9 +2,9 @@ extends Node
 
 var Start = load("res://Scenes/Start.tscn")
 
-var Level1 = load("res://Scenes/LevelTemplate.tscn")
-var Level2 = load("res://Scenes/LevelTemplate.tscn")
-var Level3 = load("res://Scenes/LevelTemplate.tscn")
+var Level1 = load("res://Scenes/Level1.tscn")
+var Level2 = load("res://Scenes/Level2.tscn")
+var Level3 = load("res://Scenes/Level3.tscn")
 
 var Gameover = load("res://Scenes/Gameover.tscn")
 var Win = load("res://Scenes/Win.tscn")
@@ -26,7 +26,7 @@ func _on_Level1_started():
 	self.remove_child(start)
 	level_1 = Level1.instance()
 	level_1.connect("death", self, "_on_death")
-	level_1.connect("eat", self, "_on_Level1_completed")
+	level_1.connect("eat_1", self, "_on_Level1_completed")
 	self.add_child(level_1)
 	
 func _on_death():
@@ -41,14 +41,14 @@ func _on_Level1_completed():
 	self.remove_child(level_1)
 	level_2 = Level2.instance()
 	level_2.connect("death", self, "_on_death")
-	level_2.connect("eat", self, "_on_Level2_completed")
+	level_2.connect("eat_2", self, "_on_Level2_completed")
 	self.add_child(level_2)
 
 func _on_Level2_completed():
 	self.remove_child(level_2)
 	level_3 = Level3.instance()
 	level_3.connect("death", self, "_on_death")
-	level_3.connect("eat", self, "_on_win")
+	level_3.connect("eat_3", self, "_on_win")
 	self.add_child(level_3)
 	
 func _on_win():
