@@ -11,9 +11,10 @@
 [ext_resource path="res://Assets/white25_circle.png" type="Texture" id=9]
 [ext_resource path="res://Assets/white50_circle.png" type="Texture" id=10]
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=1]
+radius = 32.9969
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
@@ -26,7 +27,7 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 6 ) ],
 "loop": true,
@@ -44,11 +45,10 @@ shape = SubResource( 1 )
 [node name="OuterTail" type="AnimatedSprite" parent="."]
 scale = Vector2( 1.2, 1.2 )
 z_index = -3
-frames = SubResource( 3 )
-animation = "New Anim"
+frames = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 4 )
+frames = SubResource( 3 )
 frame = 4
 playing = true
 
