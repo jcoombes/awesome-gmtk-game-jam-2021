@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Tail.gd" type="Script" id=1]
 [ext_resource path="res://Assets/orange_circle.png" type="Texture" id=2]
@@ -7,26 +7,23 @@
 [ext_resource path="res://Assets/green_circle.png" type="Texture" id=5]
 [ext_resource path="res://Assets/purple_circle.png" type="Texture" id=6]
 [ext_resource path="res://Assets/blue_circle.png" type="Texture" id=7]
-[ext_resource path="res://Assets/white75_circle.png" type="Texture" id=8]
-[ext_resource path="res://Assets/white25_circle.png" type="Texture" id=9]
-[ext_resource path="res://Assets/white50_circle.png" type="Texture" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": false,
 "name": "Glint",
-"speed": 10.0
+"speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 6 ) ],
 "loop": true,
@@ -41,14 +38,13 @@ script = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="OuterTail" type="AnimatedSprite" parent="."]
+[node name="Background" type="AnimatedSprite" parent="."]
 scale = Vector2( 1.2, 1.2 )
-z_index = -3
-frames = SubResource( 3 )
-animation = "New Anim"
+z_index = -1
+frames = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 4 )
+frames = SubResource( 3 )
 frame = 4
 playing = true
 

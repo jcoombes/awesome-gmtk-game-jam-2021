@@ -1,5 +1,6 @@
 extends Node2D
 signal replay
+signal vibes
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -17,6 +18,8 @@ signal replay
 func _input(event):
 	if event.is_action_pressed("replay"):
 		emit_signal("replay")
+	if event.is_action_pressed("vibes"):
+		emit_signal("vibes")
 
 
 func _on_Player_death():

@@ -9,12 +9,17 @@ var Level3 = load("res://Scenes/Level3.tscn")
 var Gameover = load("res://Scenes/Gameover.tscn")
 var Win = load("res://Scenes/Win.tscn")
 
+var Vibes = load("res://Scenes/Vibes.tscn")
+
 var start = null
 var level_1 = null
 var level_2 = null
 var level_3 = null
 var gameover = null
 var win = null
+var vibes = null
+
+var possible_scenes = [start, level_1, level_2, level_3, gameover, win, vibes]
 
 func _on_Start():
 	start = Start.instance()
@@ -56,7 +61,17 @@ func _on_win():
 	win = Win.instance()
 	win.connect("replay", self, "_on_Replay")
 	self.add_child(win)
-	
+
+func _on_Vibes():
+	for n in self.get_children():
+		self.remove_child(n)
+		
+	for poss_scene in possible_scenes:
+		self.remove_child(poss_scene)
+	vibes = Vibes.instance()
+	vibes.connect("unvibes", self, "_on_Replay")
+	self.add_child(vibes)
+
 #func _on_Level3_completed():
 #	self.remove_child(level_3)
 #	level_4 = Level4.instance()
@@ -65,6 +80,7 @@ func _on_win():
 #	self.add_child(level_4)
 	
 func _on_Replay():
+	self.remove_child(vibes)
 	self.remove_child(gameover)
 	self.remove_child(win)
 	start = Start.instance()
@@ -78,6 +94,8 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if event.is_action_pressed("enscape."):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if event.is_action_pressed("vibes"):
+		_on_Vibes()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

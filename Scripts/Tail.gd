@@ -4,7 +4,7 @@ extends Area2D
 # var a = 2
 # var b = "text"
 var the_time = 0
-var init_not_deadly = .2
+var init_not_deadly = .3
 var seconds_remaining = 3
 
 signal death
@@ -16,7 +16,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	the_time += delta
-	
 	seconds_remaining -= delta
 	if seconds_remaining <= 0:
 		get_parent().remove_child(self)
