@@ -12,8 +12,8 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 32.3043
+[sub_resource type="CircleShape2D" id=2]
+radius = 33.0366
 
 [node name="Player1" type="Node2D"]
 script = ExtResource( 3 )

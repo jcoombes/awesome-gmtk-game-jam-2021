@@ -6,6 +6,7 @@ var Tail = load("res://Scenes/Tail.tscn")
 
 var speed = 2
 var direction = Vector2(1, 0)
+var movement_coefficient = 1
 var tail_spawn_rate = 0.05
 var tail_spawn_time = 0
 
@@ -29,8 +30,23 @@ func glint():
 		glint_cooldown = glint_cooldown_duration
 		print('I, the heroic glint() function, must wait ' + String(glint_cooldown))
 #	glint_seconds_remaining = glint_duration
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		self.direction = event.relative.normalized()
+		glint()
+		
+		
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
 	
-func physics_abstraction(delta, direction):
+func _physics_process(delta):
 	tail_spawn_time += delta
 
 	if (tail_spawn_time > tail_spawn_rate and glint_seconds_remaining > 0 and glint_cooldown > 0):
@@ -57,34 +73,11 @@ func physics_abstraction(delta, direction):
 		tail_spawn_time -= tail_spawn_rate
 	
 #	elif glint_seconds_remaining > 0:
-#		glint_seconds_remaining -= delta
-		
+#		glint_seconds_remaining -= delta	
 				
-	var collision = move_and_collide(direction * speed)
+	var collision = move_and_collide(movement_coefficient * direction * speed)
 	if collision:
 		glint()
 		var reflect = collision.remainder.bounce(collision.normal)
 		direction = direction.bounce(collision.normal)
 		move_and_collide(reflect)
-	
-
-func _input(event):
-	if event is InputEventMouseMotion:
-		self.direction = event.relative.normalized()
-		glint()
-		
-		
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
-func _physics_process(delta):
-	physics_abstraction(delta, direction)
-		
-		
-	# object "collision" contains information about the collision
