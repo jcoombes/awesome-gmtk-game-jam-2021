@@ -1,0 +1,54 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scripts/Gameover.gd" type="Script" id=1]
+[ext_resource path="res://Assets/gameover.png" type="Texture" id=2]
+[ext_resource path="res://Assets/purple_gameover.png" type="Texture" id=3]
+[ext_resource path="res://Assets/orange_gameover.png" type="Texture" id=4]
+[ext_resource path="res://Assets/green_gameover.png" type="Texture" id=5]
+[ext_resource path="res://Assets/blue_gameover.png" type="Texture" id=6]
+[ext_resource path="res://Assets/yellow_gameover.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Roboto-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 45
+font_data = SubResource( 1 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Gameover" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 1856.0
+margin_bottom = 1016.0
+custom_fonts/font = SubResource( 2 )
+text = "Dear Sir / Ma'am,
+
+We are sorry to inform you that you have eaten your own tail. If you were previously labouring under the mistaken notion that you had not eaten your own or someone else's tail, or that these snakes were something other than parakeets, disabuse yourself of that notion postwith and forthhence.
+
+Sincerely,
+lilxxxwrld
+the department of whoever handles this sort of thing."
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 960, 540 )
+z_index = -10
+frames = SubResource( 3 )
+frame = 2
+playing = true
