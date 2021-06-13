@@ -1,15 +1,15 @@
 extends Node2D
 signal death
+signal eat
 
-var player = load("res://Scenes/Player.tscn")
-var antiplayer = load("res://Scenes/Antiplayer.tscn")
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var Player = load("res://Scenes/Player.tscn")
+var Antiplayer = load("res://Scenes/Antiplayer.tscn")
+var Apple = load("res://Scenes/Apple.tscn")
 
 var player_spawn = Vector2(960 - 430, 540)
 var antiplayer_spawn = Vector2(960 + 430, 540)
+var apple_spawn = Vector2(rand_range(0, 1920), rand_range(0,1080))
+
 var players = []
 
 var the_time = 0
@@ -17,6 +17,9 @@ var new_snake = 10
 
 func _on_Player_death():
 	emit_signal("death")
+
+func _on_Player_eat():
+	emit_signal("eat")
 
 func _input(event):
 	if event.is_action_pressed("toggle_fullscreen"):
@@ -30,17 +33,22 @@ func _input(event):
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-	var player_ = player.instance()
-	player_.position = player_spawn
-	player_.connect("death", self, "_on_Player_death")
-	add_child(player_)
-	players.push_back(player_)
+	var player = Player.instance()
+	player.position = player_spawn
+	player.connect("death", self, "_on_Player_death")
+	add_child(player)
+	players.push_back(player)
 	
-	var antiplayer_ = antiplayer.instance()
-	antiplayer_.position = antiplayer_spawn
-	antiplayer_.connect("death", self, "_on_Player_death")
-	add_child(antiplayer_)
-	players.push_back(antiplayer_)
+	var antiplayer = Antiplayer.instance()
+	antiplayer.position = antiplayer_spawn
+	antiplayer.connect("death", self, "_on_Player_death")
+	add_child(antiplayer)
+	players.push_back(antiplayer)
+	
+	var apple = Apple.instance()
+	apple.position = apple_spawn
+	apple.connect("eat", self, "_on_Player_eat")
+	add_child(apple)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,19 +56,19 @@ func _process(delta):
 	the_time += delta
 	
 	if the_time > new_snake:
-		var player_ = player.instance()
-		player_.position = player_spawn
-		player_.connect("death", self, "_on_Player_death")
-		add_child(player_)
-		players.push_back(player_)
+		var player = Player.instance()
+		player.position = player_spawn
+		player.connect("death", self, "_on_Player_death")
+		add_child(player)
+		players.push_back(player)
 		
 		
 
-		var antiplayer_ = antiplayer.instance()
-		antiplayer_.position = antiplayer_spawn
-		antiplayer_.connect("death", self, "_on_Player_death")
-		add_child(antiplayer_)
-		players.push_back(antiplayer_)
+		var antiplayer = Antiplayer.instance()
+		antiplayer.position = antiplayer_spawn
+		antiplayer.connect("death", self, "_on_Player_death")
+		add_child(antiplayer)
+		players.push_back(antiplayer)
 		
 		the_time -= new_snake
 #	pass
