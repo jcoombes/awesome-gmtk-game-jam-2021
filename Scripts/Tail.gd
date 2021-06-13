@@ -17,7 +17,6 @@ func _ready():
 func _process(delta):
 	the_time += delta
 	
-	# self.position += delta * Vector2(1, 1)
 	seconds_remaining -= delta
 	if seconds_remaining <= 0:
 		get_parent().remove_child(self)
