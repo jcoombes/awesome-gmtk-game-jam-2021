@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Level1.gd" type="Script" id=1]
-[ext_resource path="res://Assets/background.png" type="Texture" id=2]
+[ext_resource path="res://Assets/blackground.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 960, 10 )
@@ -46,6 +46,5 @@ shape = SubResource( 4 )
 
 [node name="background" type="AnimatedSprite" parent="."]
 position = Vector2( 960, 540 )
-scale = Vector2( 0.5, 0.5 )
 z_index = -10
 frames = SubResource( 5 )
