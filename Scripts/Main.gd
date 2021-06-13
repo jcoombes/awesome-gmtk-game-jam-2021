@@ -2,15 +2,15 @@ extends Node
 
 var Start = load("res://Scenes/Start.tscn")
 
-var Level1 = load("res://Scenes/Level1.tscn")
-var Level2 = load("res://Scenes/Level2.tscn")
-var Level3 = load("res://Scenes/Level3.tscn")
+var Level1 = load("res://Scenes/LevelTemplate.tscn")
+var Level2 = load("res://Scenes/LevelTemplate.tscn")
+var Level3 = load("res://Scenes/LevelTemplate.tscn")
 
 var Gameover = load("res://Scenes/Gameover.tscn")
 var Win = load("res://Scenes/Win.tscn")
 
 var start = null
-var level = null
+var level_1 = null
 var level_2 = null
 var level_3 = null
 var gameover = null
@@ -24,19 +24,21 @@ func _on_Start():
 func _on_Level1_started():
 #	$Start.visible = !$Start.visible
 	self.remove_child(start)
-	level = Level1.instance()
-	level.connect("death", self, "_on_death")
-	level.connect("eat", self, "_on_win")
-	self.add_child(level)
+	level_1 = Level1.instance()
+	level_1.connect("death", self, "_on_death")
+	level_1.connect("eat", self, "_on_Level1_completed")
+	self.add_child(level_1)
 	
 func _on_death():
-	self.remove_child(level)
+	self.remove_child(level_1)
+	self.remove_child(level_2)
+	self.remove_child(level_3)
 	gameover = Gameover.instance()
 	gameover.connect("replay", self, "_on_Replay")
 	self.add_child(gameover)
 
 func _on_Level1_completed():
-	self.remove_child(level)
+	self.remove_child(level_1)
 	level_2 = Level2.instance()
 	level_2.connect("death", self, "_on_death")
 	level_2.connect("eat", self, "_on_Level2_completed")
@@ -50,17 +52,17 @@ func _on_Level2_completed():
 	self.add_child(level_3)
 	
 func _on_win():
-	self.remove_child(level)
+	self.remove_child(level_3)
 	win = Win.instance()
 	win.connect("replay", self, "_on_Replay")
 	self.add_child(win)
 	
-func _on_Level3_completed():
-	self.remove_child(level_3)
-	level_3 = Level3.instance()
-	level_3.connect("death", self, "_on_death")
-	level_3.connect("eat", self, "_on_Level3_completed")
-	self.add_child(level_3)
+#func _on_Level3_completed():
+#	self.remove_child(level_3)
+#	level_4 = Level4.instance()
+#	level_4.connect("death", self, "_on_death")
+#	level_4.connect("eat", self, "_on_win")
+#	self.add_child(level_4)
 	
 func _on_Replay():
 	self.remove_child(gameover)
