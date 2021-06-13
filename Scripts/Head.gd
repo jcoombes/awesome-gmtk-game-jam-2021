@@ -18,17 +18,7 @@ func on_death():
 func _ready():
 	pass
 
-func _input(event):
-	if event is InputEventMouseMotion:
-		self.direction = event.relative.normalized()
-		
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
-func _physics_process(delta):
-	# print(position)
-
+func physics_abstraction(delta, direction):
 	the_time += delta
 	if the_time > tail_spawn_rate:
 		var tail_ = tail.instance()
@@ -43,6 +33,18 @@ func _physics_process(delta):
 		var reflect = collision.remainder.bounce(collision.normal)
 		direction = direction.bounce(collision.normal)
 		move_and_collide(reflect)
+	
+	
+func _input(event):
+	if event is InputEventMouseMotion:
+		self.direction = event.relative.normalized()
+		
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+	
+func _physics_process(delta):
+	physics_abstraction(delta, direction)
 		
 		
 	# object "collision" contains information about the collision

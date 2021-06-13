@@ -4,7 +4,7 @@ extends Area2D
 # var a = 2
 # var b = "text"
 var the_time = 0
-var init_not_deadly = .5
+var init_not_deadly = .2
 var seconds_remaining = 3
 
 signal death
