@@ -19,6 +19,7 @@ func _process(delta):
 	seconds_remaining -= delta
 	if seconds_remaining <= 0:
 		get_parent().remove_child(self)
+		queue_free()
 
 
 func _on_Tail_area_entered(area):

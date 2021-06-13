@@ -46,5 +46,4 @@ __meta__ = {
 position = Vector2( 960, 540 )
 z_index = -10
 frames = SubResource( 3 )
-frame = 5
 playing = true
